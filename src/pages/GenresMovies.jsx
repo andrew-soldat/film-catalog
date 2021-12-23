@@ -14,22 +14,23 @@ function GenresMovies() {
    let params = useParams();
    const lastElement = useRef();
    let { language, listGenres } = useGlobalState();
-	let currentGenre = listGenres.filter(item => item.name.toLowerCase() === params.name.replace(/_/g, ' '))
-	
+   let currentGenre = listGenres.filter(
+      (item) => item.name.toLowerCase() === params.name.replace(/_/g, ' ')
+   );
 
    const [fetchListMovies, isMoviesLoading, moviesError] = useFetching(
       async () => {
          const response = await MoviesService.getListMoviesByGenre(
-				language,
+            language,
             currentGenre[0].id,
             currentPage
          );
-			setMovies(response.results)
+         setMovies(response.results);
          setMovies([...movies, ...response.results]);
          setTotalPages(response.total_pages);
       }
    );
-	
+
    useObserver(lastElement, currentPage < totalPages, isMoviesLoading, () => {
       setCurrentPage(currentPage + 1);
    });
@@ -40,9 +41,7 @@ function GenresMovies() {
 
    return (
       <div className="container">
-         <div className="title mb-3">
-				{currentGenre[0].name}
-         </div>
+         <div className="title mb-3">{currentGenre[0].name}</div>
          {moviesError && <h2 className="h2">{moviesError}</h2>}
          {isMoviesLoading && (
             <Spinner

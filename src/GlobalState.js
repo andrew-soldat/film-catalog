@@ -2,9 +2,9 @@ import React, { useReducer, useContext, useEffect } from 'react';
 import AppReducer from './AppReducer';
 
 const initialState = {
-	language: localStorage.getItem('language')
-	? JSON.parse(localStorage.getItem('language'))
-	: 'en-US',
+   language: localStorage.getItem('language')
+      ? JSON.parse(localStorage.getItem('language'))
+      : 'en-US',
    collections: ['popularity', 'vote_count'],
    listGenres: [
       {
@@ -127,8 +127,8 @@ export const GlobalProvider = ({ children }) => {
    return (
       <StateContext.Provider
          value={{
-				language: state.language,
-				collections: state.collections,
+            language: state.language,
+            collections: state.collections,
             listGenres: state.listGenres,
             watchList: state.watchList,
             watched: state.watched,
@@ -136,7 +136,7 @@ export const GlobalProvider = ({ children }) => {
             removeMovieFromWatchList,
             addMovieToWatched,
             removeMovieFromWatched,
-				toggleLanguage,
+            toggleLanguage,
          }}
       >
          {children}

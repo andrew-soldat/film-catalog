@@ -1,15 +1,15 @@
-import React from 'react'
-import LinkViewAllMoviesByGenre from '../../../components/LinkViewAllMoviesByGenre'
-import { Swiper, SwiperSlide } from 'swiper/react/swiper-react.js'
+import React from 'react';
+import LinkViewAllMoviesByGenre from '../../../components/LinkViewAllMoviesByGenre';
+import { Swiper, SwiperSlide } from 'swiper/react/swiper-react.js';
 import SwiperCore, {
    Keyboard,
    Scrollbar,
    Navigation,
    Pagination,
-} from 'swiper'
+} from 'swiper';
 SwiperCore.use([Keyboard, Scrollbar, Navigation, Pagination]);
 
-const SliderGenres = ({listGenres}) => {
+const SliderGenres = ({ listGenres }) => {
    return (
       <div className="swipper-container">
          <Swiper
@@ -38,12 +38,12 @@ const SliderGenres = ({listGenres}) => {
          >
             {listGenres.map((genre) => (
                <SwiperSlide key={genre.name}>
-						<LinkViewAllMoviesByGenre name={genre.name} />
+                  <LinkViewAllMoviesByGenre name={genre.name} />
                </SwiperSlide>
             ))}
          </Swiper>
       </div>
    );
-}
+};
 
-export default SliderGenres
+export default SliderGenres;

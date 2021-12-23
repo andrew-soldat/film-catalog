@@ -17,7 +17,10 @@ function Movies() {
       isMoviesPopularityLoading,
       moviesPopularityError,
    ] = useFetching(async () => {
-      const response = await MoviesService.getSortListMovie(language, collections[0]);
+      const response = await MoviesService.getSortListMovie(
+         language,
+         collections[0]
+      );
       setMoviesPopularity(response.results);
    });
 
@@ -26,7 +29,10 @@ function Movies() {
       isMoviesVoteCountLoading,
       moviesVoteCountError,
    ] = useFetching(async () => {
-      const response = await MoviesService.getSortListMovie(language, collections[1]);
+      const response = await MoviesService.getSortListMovie(
+         language,
+         collections[1]
+      );
       setMoviesVoteCount(response.results);
    });
 

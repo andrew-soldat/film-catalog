@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router';
 
 function LinkViewAllMovies({ collection }) {
-   let router = useHistory();	
+   let router = useHistory();
 
    return (
       <div

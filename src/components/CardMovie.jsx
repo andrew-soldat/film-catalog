@@ -3,11 +3,7 @@ import { useHistory } from 'react-router';
 import { Col } from 'react-bootstrap';
 import Tooltip from 'react-bootstrap/Tooltip';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import {
-   PlayFill,
-   Eye,
-   EyeSlash,
-} from 'react-bootstrap-icons';
+import { PlayFill, Eye, EyeSlash } from 'react-bootstrap-icons';
 import { useGlobalState } from '../GlobalState';
 import setVoteClass from '../utils/setVoteClass';
 import getListGenresById from '../utils/getListGenresById';
@@ -20,26 +16,34 @@ function CardMovie({ movie }) {
    let { listGenres } = useGlobalState();
    let [arrayGenres, setArrayGenres] = useState([]);
 
-	const getGenres = () => {
-		if (movie.genre_ids) {
-			setArrayGenres(getListGenresById(listGenres, movie.genre_ids));
-		} else {
-			const arr = []
-			movie.genres.map(item => arr.push(item.name))
-			setArrayGenres(arr)
-		}
-	}
+   const getGenres = () => {
+      if (movie.genre_ids) {
+         setArrayGenres(getListGenresById(listGenres, movie.genre_ids));
+      } else {
+         const arr = [];
+         movie.genres.map((item) => arr.push(item.name));
+         setArrayGenres(arr);
+      }
+   };
 
    useEffect(() => {
-		getGenres()
+      getGenres();
    }, []);
 
    return (
       <Col sm={6} md={3} lg={2} className="item-movie">
          <div className="item-movie__wrapper">
             <div className="item-movie__menu">
-					<AddRemoveFromWatchList isCard={true} id={movie.id} movie={movie}/>
-					<AddRemoveFromWatched isCard={true} id={movie.id} movie={movie}/>
+               <AddRemoveFromWatchList
+                  isCard={true}
+                  id={movie.id}
+                  movie={movie}
+               />
+               <AddRemoveFromWatched
+                  isCard={true}
+                  id={movie.id}
+                  movie={movie}
+               />
             </div>
             <div
                className={`item-movie__vote-average ${setVoteClass(

@@ -4,27 +4,22 @@ import { Row, Col } from 'react-bootstrap';
 import { MoviesService } from '../API/api';
 import { getDate } from '../utils/getDate';
 import { useGlobalState } from '../GlobalState';
-import {
-   StarFill,
-   StopwatchFill,
-} from 'react-bootstrap-icons';
+import { StarFill, StopwatchFill } from 'react-bootstrap-icons';
 import AddRemoveFromWatchList from '../components/AddRemoveFromWatchList';
 import AddRemoveFromWatched from '../components/AddRemoveFromWatched';
 
-function MovieDescriptionPage () {
+function MovieDescriptionPage() {
    const IMG_API = 'https://image.tmdb.org/t/p/w500';
    let params = useParams();
    let router = useHistory();
 
-   let {
-		language
-   } = useGlobalState();
+   let { language } = useGlobalState();
 
    let [movie, setMovie] = useState({});
 
    async function fetchMoviesById() {
       const response = await MoviesService.getMovieById(language, params.id);
-      setMovie(response);	
+      setMovie(response);
    }
 
    useEffect(() => {
@@ -78,7 +73,9 @@ function MovieDescriptionPage () {
                      </div>
                      <Row className="g-4 mb-3">
                         <Col sm={3} className="movie__subtitle">
-                           {language === 'en-US' ? "Original title" : "Оригинальный заголовок"}
+                           {language === 'en-US'
+                              ? 'Original title'
+                              : 'Оригинальный заголовок'}
                         </Col>
                         <Col sm={9} className="movie__info">
                            {movie.original_title}
@@ -158,8 +155,16 @@ function MovieDescriptionPage () {
                         </div>
                      </div>
                      <div className="movie-menu">
-								<AddRemoveFromWatchList isCard={false} id={movie.id} movie={movie} />
-                        <AddRemoveFromWatched isCard={false} id={movie.id} movie={movie} />
+                        <AddRemoveFromWatchList
+                           isCard={false}
+                           id={movie.id}
+                           movie={movie}
+                        />
+                        <AddRemoveFromWatched
+                           isCard={false}
+                           id={movie.id}
+                           movie={movie}
+                        />
                      </div>
                   </Col>
                </Row>

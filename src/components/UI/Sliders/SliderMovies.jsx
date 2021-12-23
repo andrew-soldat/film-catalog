@@ -1,16 +1,16 @@
 import React from 'react';
-import CardMovie from '../../CardMovie'
-import LinkViewAllMovies from '../../LinkViewAllMovies'
-import { Swiper, SwiperSlide } from 'swiper/react/swiper-react.js'
+import CardMovie from '../../CardMovie';
+import LinkViewAllMovies from '../../LinkViewAllMovies';
+import { Swiper, SwiperSlide } from 'swiper/react/swiper-react.js';
 import SwiperCore, {
    Keyboard,
    Scrollbar,
    Navigation,
    Pagination,
-} from 'swiper'
+} from 'swiper';
 SwiperCore.use([Keyboard, Scrollbar, Navigation, Pagination]);
 
-const SliderMovies = ({listMovies, collection}) => {
+const SliderMovies = ({ listMovies, collection }) => {
    return (
       <div className="swipper-container">
          <Swiper
@@ -48,6 +48,6 @@ const SliderMovies = ({listMovies, collection}) => {
          </Swiper>
       </div>
    );
-}
+};
 
-export default SliderMovies
+export default SliderMovies;
