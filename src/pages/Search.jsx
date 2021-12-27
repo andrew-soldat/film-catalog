@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { MoviesService } from '../API/api';
-import { Spinner } from 'react-bootstrap';
-import ListMovies from '../components/ListMovies';
-import Input from '../components/UI/Inputs/Input';
-import { useFetching } from '../hooks/useFetching';
-import { useGlobalState } from '../GlobalState';
+import React, { useState, useEffect } from "react";
+import { MoviesService } from "../API/api";
+import { Spinner } from "react-bootstrap";
+import ListMovies from "../components/ListMovies";
+import Input from "../components/UI/Inputs/Input";
+import { useFetching } from "../hooks/useFetching";
+import { useGlobalState } from "../GlobalState";
 
 function Search() {
    let [movies, setMovies] = useState([]);
-   let [searchQuery, setSearchQuery] = useState('');
+   let [searchQuery, setSearchQuery] = useState("");
    let { language } = useGlobalState();
 
    const [fetchMovies, isMoviesLoading, movieError] = useFetching(async () => {
