@@ -573,6 +573,8 @@ h6 {
 }
 .view-all {
    height: 100%;
+	width: 100%;
+	display: block;
    padding: 16px;
    font-size: 15px;
    text-align: center;
@@ -599,6 +601,26 @@ h6 {
       background-color: $color-blue-light;
       color: $color-white;
    }
+}
+.show-more {
+	width: 100%;
+	margin: 24px 0px 0px 0px;
+	padding: 16px;
+   font-size: 16px;
+   text-align: center;
+   color: $color-white;
+   background-color: $color-blue;
+   border-radius: 5px;
+   transition: all 0.3s ease 0s;
+
+	&:hover {
+      background-color: $color-blue-light;
+      color: $color-white;
+   }
+
+	&.hide {
+		display: none;
+	}
 }
 .pagination {
    padding: 20px;

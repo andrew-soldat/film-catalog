@@ -5,12 +5,13 @@ function LinkViewAllMovies({ collection }) {
    let router = useHistory();
 
    return (
-      <div
+      <button
+         type="button"
          className="view-all collection"
          onClick={() => router.push(`/collections/${collection}`)}
       >
          View all
-      </div>
+      </button>
    );
 }
 

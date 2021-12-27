@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MoviesService } from '../API/api';
 import { Spinner } from 'react-bootstrap';
 import ListMovies from '../components/ListMovies';
@@ -9,7 +9,6 @@ import { useGlobalState } from '../GlobalState';
 function Search() {
    let [movies, setMovies] = useState([]);
    let [searchQuery, setSearchQuery] = useState('');
-   const lastElement = useRef();
    let { language } = useGlobalState();
 
    const [fetchMovies, isMoviesLoading, movieError] = useFetching(async () => {
@@ -53,7 +52,6 @@ function Search() {
             )}
             <ListMovies movies={movies} />
          </div>
-         <div ref={lastElement}></div>
       </div>
    );
 }

@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useGlobalState } from '../GlobalState';
 import { MoviesService } from '../API/api';
 import ListMovies from '../components/ListMovies';
 import { useFetching } from '../hooks/useFetching';
-import { useObserver } from '../hooks/useObserver';
 import { Spinner } from 'react-bootstrap';
 
 function CollectionsMovies() {
@@ -12,7 +11,6 @@ function CollectionsMovies() {
    const [currentPage, setCurrentPage] = useState(1);
    const [totalPages, setTotalPages] = useState(0);
    let params = useParams();
-   const lastElement = useRef();
 	let { language} = useGlobalState();
 
    const [fetchListMovies, isMoviesLoading, moviesError] = useFetching(
@@ -27,9 +25,11 @@ function CollectionsMovies() {
       }
    );
 
-   useObserver(lastElement, currentPage < totalPages, isMoviesLoading, () => {
-      setCurrentPage(currentPage + 1);
-   });
+	const showMore = () => {
+		if (currentPage < totalPages) {
+			setCurrentPage(prevState => prevState + 1);
+		}
+	}
 
    useEffect(() => {
       fetchListMovies();
@@ -47,7 +47,7 @@ function CollectionsMovies() {
             />
          )}
          <ListMovies movies={movies} />
-         <div ref={lastElement}></div>
+			<button type="button" onClick={() => showMore()} className={currentPage === totalPages ? "show-more hide" : "show-more"}>Show more</button>
       </div>
    );
 }
