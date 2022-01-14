@@ -1,21 +1,22 @@
-import React from "react";
-import CardMovie from "../../CardMovie";
-import LinkViewAllMovies from "../../LinkViewAllMovies";
-import { Swiper, SwiperSlide } from "swiper/react/swiper-react.js";
+import React from 'react';
+import LinkViewAllMoviesByGenre from '../../LinkViewAllMoviesByGenre';
+import { Swiper, SwiperSlide } from 'swiper/react/swiper-react.js';
 import SwiperCore, {
    Keyboard,
    Scrollbar,
    Navigation,
    Pagination,
-} from "swiper";
+} from 'swiper';
 SwiperCore.use([Keyboard, Scrollbar, Navigation, Pagination]);
 
-const SliderMovies = ({ listMovies, collection }) => {
+const SliderCast = ({ listCast }) => {
+   const IMG_API = "https://image.tmdb.org/t/p/w300";
+
    return (
       <div className="swipper-container">
          <Swiper
             slidesPerView={1}
-            spaceBetween={24}
+            spaceBetween={12}
             slidesPerGroup={1}
             keyboard={{
                enabled: true,
@@ -37,19 +38,21 @@ const SliderMovies = ({ listMovies, collection }) => {
                },
             }}
          >
-            {listMovies.map((movie) => (
-               <SwiperSlide key={movie.id}>
-                  <CardMovie movie={movie} />
+            {listCast.map((cast) => (
+               <SwiperSlide key={cast.id}>
+                  {/* <LinkViewAllMoviesByGenre cast={cast.name} id={genre.id} /> */}
+               <div className="">
+                  <div className="">
+                     <img src={cast.profile_path ? IMG_API + cast.profile_path : "no photo"} alt={cast?.name} className="img-fluid" />
+                     <div className="">{cast?.name}</div>
+                  </div>
+               </div>
+
                </SwiperSlide>
             ))}
-            {collection && (
-               <SwiperSlide>
-                  <LinkViewAllMovies collection={collection} />
-               </SwiperSlide>
-            )}
          </Swiper>
       </div>
    );
 };
 
-export default SliderMovies;
+export default SliderCast;

@@ -4,6 +4,9 @@ import { useHistory } from 'react-router';
 function LinkViewAllMovies({ collection }) {
    let router = useHistory();
 
+   console.log(router);
+
+
    return (
       <button
          type="button"

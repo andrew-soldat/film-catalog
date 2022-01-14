@@ -1,6 +1,4 @@
 import React from "react";
-import CardMovie from "../../CardMovie";
-import LinkViewAllMovies from "../../LinkViewAllMovies";
 import { Swiper, SwiperSlide } from "swiper/react/swiper-react.js";
 import SwiperCore, {
    Keyboard,
@@ -8,14 +6,14 @@ import SwiperCore, {
    Navigation,
    Pagination,
 } from "swiper";
+import CardTrailer from "../../CardTrailer";
 SwiperCore.use([Keyboard, Scrollbar, Navigation, Pagination]);
 
-const SliderMovies = ({ listMovies, collection }) => {
+const SliderTrailer = ({ listTrailers, handleShow }) => {
    return (
-      <div className="swipper-container">
+      <div className="swipper-container swiper-tab-card-movie">
          <Swiper
             slidesPerView={1}
-            spaceBetween={24}
             slidesPerGroup={1}
             keyboard={{
                enabled: true,
@@ -24,32 +22,24 @@ const SliderMovies = ({ listMovies, collection }) => {
             navigation={true}
             breakpoints={{
                991: {
-                  slidesPerView: 6,
-                  slidesPerGroup: 6,
+                  slidesPerView: 4,
                },
                768: {
-                  slidesPerView: 4,
-                  slidesPerGroup: 4,
+                  slidesPerView: 3,
                },
                565: {
                   slidesPerView: 2,
-                  slidesPerGroup: 2,
                },
             }}
          >
-            {listMovies.map((movie) => (
-               <SwiperSlide key={movie.id}>
-                  <CardMovie movie={movie} />
+            {listTrailers.map((item) => (
+               <SwiperSlide key={item.name}>
+                  <CardTrailer trailer={item} handleShow={handleShow} />
                </SwiperSlide>
             ))}
-            {collection && (
-               <SwiperSlide>
-                  <LinkViewAllMovies collection={collection} />
-               </SwiperSlide>
-            )}
          </Swiper>
       </div>
    );
 };
 
-export default SliderMovies;
+export default SliderTrailer;

@@ -7,17 +7,18 @@ const instance = axios.create({
 const apiKey = '076fc865efeb5c33f6c3d84f0496217d';
 
 export const MoviesService = {
-   async getSortListMovie(language, sort, page = 1) {
+
+   async getCollectionMovies(language, collection, page = 1) {
       const response = await instance.get(
-         `discover/movie?api_key=${apiKey}&language=${language}&sort_by=${sort}.desc&include_adult=false&include_video=false&page=${page}`
+         `movie/${collection}?api_key=${apiKey}&language=${language}&page=${page}`
       );
       return response.data;
    },
 
-   // async getListGenres() {
-   // 	const response = await instance.get(`genre/movie/list?api_key=${apiKey}&language=en-US`)
-   // 	return response.data;
-   // },
+   async getListGenres(language) {
+   	const response = await instance.get(`genre/movie/list?api_key=${apiKey}&language=${language}`)
+   	return response.data;
+   },
 
    async getListMoviesByGenre(language, id, page = 1) {
       const response = await instance.get(
@@ -40,8 +41,23 @@ export const MoviesService = {
       return response.data;
    },
 
-   // async getVideoMovieById(id) {
-   // 	const response = await instance.get(`movie/{id}/videos?api_key=${apiKey}&language=en-US`)
-   // 	return response.data;
-   // }
+   async getVideosMovieById(language, id) {
+      const response = await instance.get(`movie/${id}/videos?api_key=${apiKey}&language=${language}`)
+      return response.data;
+   },
+
+   async getCastAndCrewMovieById(language, id) {
+   	const response = await instance.get(`movie/${id}/credits?api_key=${apiKey}&language=${language}`)
+   	return response.data;
+   },
+
+   async getImagesMovieById(id) {
+   	const response = await instance.get(`movie/${id}/images?api_key=${apiKey}`)
+   	return response.data;
+   },
+
+   async getListOfRecommendedMoviesById(language, id) {
+   	const response = await instance.get(`movie/${id}/recommendations?api_key=${apiKey}&language=${language}`)
+   	return response.data;
+   }
 };

@@ -1,11 +1,11 @@
-import React, { useReducer, useContext, useEffect } from 'react';
-import AppReducer from './AppReducer';
+import React, { useReducer, useContext, useEffect } from "react";
+import AppReducer from "./AppReducer";
 
 const initialState = {
-   language: localStorage.getItem('language')
-      ? JSON.parse(localStorage.getItem('language'))
-      : 'en-US',
-   collections: ['popularity', 'vote_count'],
+   language: localStorage.getItem("language")
+      ? JSON.parse(localStorage.getItem("language"))
+      : "en-US",
+   collections: ["popular", "now_playing", "top_rated"],
    listGenres: [
       {
          id: 28,
@@ -84,11 +84,11 @@ const initialState = {
          name: 'Western',
       },
    ],
-   watchList: localStorage.getItem('watchList')
-      ? JSON.parse(localStorage.getItem('watchList'))
+   watchList: localStorage.getItem("watchList")
+      ? JSON.parse(localStorage.getItem("watchList"))
       : [],
-   watched: localStorage.getItem('watched')
-      ? JSON.parse(localStorage.getItem('watched'))
+   watched: localStorage.getItem("watched")
+      ? JSON.parse(localStorage.getItem("watched"))
       : [],
 };
 
@@ -102,26 +102,26 @@ export const GlobalProvider = ({ children }) => {
    let [state, dispatch] = useReducer(AppReducer, initialState);
 
    const addMovieToWatchList = (movie) => {
-      dispatch({ type: 'ADD_MOVIE_TO_WATCH_LIST', payload: movie });
+      dispatch({ type: "ADD_MOVIE_TO_WATCH_LIST", payload: movie });
    };
    const removeMovieFromWatchList = (movie) => {
-      dispatch({ type: 'REMOVE_MOVIE_FROM_WATCH_LIST', payload: movie });
+      dispatch({ type: "REMOVE_MOVIE_FROM_WATCH_LIST", payload: movie });
    };
    const addMovieToWatched = (movie) => {
-      dispatch({ type: 'ADD_MOVIE_TO_WATCHED', payload: movie });
+      dispatch({ type: "ADD_MOVIE_TO_WATCHED", payload: movie });
    };
    const removeMovieFromWatched = (movie) => {
-      dispatch({ type: 'REMOVE_MOVIE_FROM_WATCHED', payload: movie });
+      dispatch({ type: "REMOVE_MOVIE_FROM_WATCHED", payload: movie });
    };
 
    const toggleLanguage = (language) => {
-      dispatch({ type: 'TOGGLE_LANGUAGE', payload: language });
+      dispatch({ type: "TOGGLE_LANGUAGE", payload: language });
    };
 
    useEffect(() => {
-      localStorage.setItem('watchList', JSON.stringify(state.watchList));
-      localStorage.setItem('watch', JSON.stringify(state.watched));
-      localStorage.setItem('language', JSON.stringify(state.language));
+      localStorage.setItem("watchList", JSON.stringify(state.watchList));
+      localStorage.setItem("watch", JSON.stringify(state.watched));
+      localStorage.setItem("language", JSON.stringify(state.language));
    }, [state]);
 
    return (

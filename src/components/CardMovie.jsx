@@ -1,33 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router';
-import { Col } from 'react-bootstrap';
-import Tooltip from 'react-bootstrap/Tooltip';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import { PlayFill, Eye, EyeSlash } from 'react-bootstrap-icons';
-import { useGlobalState } from '../GlobalState';
-import setVoteClass from '../utils/setVoteClass';
-import getListGenresById from '../utils/getListGenresById';
-import AddRemoveFromWatchList from './AddRemoveFromWatchList';
-import AddRemoveFromWatched from './AddRemoveFromWatched';
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router";
+import { Col } from "react-bootstrap";
+import { PlayFill } from "react-bootstrap-icons";
+import { useGlobalState } from "../GlobalState";
+import setVoteClass from "../utils/setVoteClass";
+import AddRemoveFromWatchList from "./AddRemoveFromWatchList";
+import AddRemoveFromWatched from "./AddRemoveFromWatched";
+import { MoviesService } from "./../API/api";
 
 function CardMovie({ movie }) {
-   const IMG_API = 'https://image.tmdb.org/t/p/w500';
+   const IMG_API = "https://image.tmdb.org/t/p/w500";
    let router = useHistory();
-   let { listGenres } = useGlobalState();
-   let [arrayGenres, setArrayGenres] = useState([]);
+   let { language } = useGlobalState();
+   let [genre, setGenre] = useState({});
 
-   const getGenres = () => {
-      if (movie.genre_ids) {
-         setArrayGenres(getListGenresById(listGenres, movie.genre_ids));
-      } else {
-         const arr = [];
-         movie.genres.map((item) => arr.push(item.name));
-         setArrayGenres(arr);
-      }
-   };
+   async function fetchListGenres() {
+      const response = await MoviesService.getListGenres(language);
+      setGenre(response.genres.find((i) => i.id === movie.genre_ids[0]));
+   }
 
    useEffect(() => {
-      getGenres();
+      fetchListGenres();
    }, []);
 
    return (
@@ -50,7 +43,7 @@ function CardMovie({ movie }) {
                   movie.vote_average
                )}`}
             >
-               {movie.vote_average}
+               {movie.vote_average.toFixed(1)}
             </div>
             <div
                className="item-movie__img"
@@ -61,7 +54,7 @@ function CardMovie({ movie }) {
                   src={
                      movie.poster_path
                         ? IMG_API + movie.poster_path
-                        : 'assets/img/camera.jpg'
+                        : "assets/img/camera.jpg"
                   }
                   alt={movie.title}
                />
@@ -79,11 +72,10 @@ function CardMovie({ movie }) {
                >
                   {movie.title}
                </div>
-               <div className="item-movie__date mb-1">
-                  {arrayGenres.join(', ')}
-               </div>
                <div className="item-movie__date">
-                  {movie.release_date ? movie.release_date.substring(0, 4) : ''}
+                  {movie.release_date &&
+                     `${movie.release_date.substring(0, 4)},`}{" "}
+                  {genre?.name}
                </div>
             </div>
          </div>

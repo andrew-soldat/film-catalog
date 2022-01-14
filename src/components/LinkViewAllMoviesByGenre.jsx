@@ -12,7 +12,7 @@ function LinkViewAllMoviesByGenres({ name }) {
 			<div>
 				<img className="img-fluid" src={`assets/img/icons/${name}.png`} alt={name} />
 			</div>
-			<div className="link-genre__name mt-3"> {name}</div>
+			<div className="link-genre__name mt-3">{name}</div>
       </div>
    );
 }
