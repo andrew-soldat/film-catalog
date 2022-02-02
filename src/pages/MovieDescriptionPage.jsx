@@ -107,7 +107,7 @@ function MovieDescriptionPage() {
          ) : (
             [
                movie && (
-                  <div className="mb-5">
+                  <section className="mb-5">
                      <Row className="g-4">
                         <Col sm={4}>
                            <div>
@@ -257,7 +257,7 @@ function MovieDescriptionPage() {
                            </div>
                         </Col>
                      </Row>
-                  </div>
+                  </section>
                ),
             ]
          )}
@@ -303,8 +303,8 @@ function MovieDescriptionPage() {
                )}
             </Tabs>
          </div>
-         <div className="mb-5">
-            <div className="title">Recommendations</div>
+         <section className="mb-5">
+            <h2 className="title">Recommendations</h2>
             {isListOfRecommendedMoviesByIdLoading && (
                <h2 className="h2">{listOfRecommendedMoviesByIdError}</h2>
             )}
@@ -321,7 +321,7 @@ function MovieDescriptionPage() {
                   ),
                ]
             )}
-         </div>
+         </section>
          {listTrailers && (
             <ModalTrailer
                keyTrailer={keyTrailer}

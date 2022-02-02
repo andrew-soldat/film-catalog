@@ -6,7 +6,7 @@ function WatchList() {
    let { watchList } = useGlobalState();
 
    return (
-      <div className="page-list">
+      <section className="page-list">
          <div className="page-list__body container">
             <h1 className="title">My Watch List</h1>
             {watchList.length > 0 ? (
@@ -19,7 +19,7 @@ function WatchList() {
                </div>
             )}
          </div>
-      </div>
+      </section>
    );
 }
 

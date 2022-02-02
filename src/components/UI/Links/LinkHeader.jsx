@@ -6,13 +6,13 @@ const LinkHeader = ({ children, ...props }) => {
    let router = useHistory();
 
    return (
-      <div
+      <h2
          className="title link-header mb-3"
          onClick={() => router.push(`/collections/${props.collection}`)}
       >
          {children}
          <ChevronRight className="ms-2" />
-      </div>
+      </h2>
    );
 };
 

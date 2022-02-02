@@ -6,7 +6,7 @@ function Watched() {
    let { watched } = useGlobalState();
 
    return (
-      <div className="page-list">
+      <section className="page-list">
          <div className="page-list__body container">
             <h1 className="title">Watched</h1>
             {watched.length > 0 ? (
@@ -17,7 +17,7 @@ function Watched() {
                </div>
             )}
          </div>
-      </div>
+      </section>
    );
 }
 

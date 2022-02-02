@@ -19,7 +19,11 @@ function Search() {
    const onChange = (e) => {
       e.preventDefault();
       setSearchQuery(e.target.value);
-      fetchMovies(searchQuery);
+      if (e.target.value.length > 1) {
+         fetchMovies(searchQuery);
+      } else {
+         setMovies([]);
+      }
    };
 
    useEffect(() => {
@@ -41,17 +45,19 @@ function Search() {
                </div>
             </form>
          </div>
-         <div className="mb-5">
-            {/* {movieError && <h2 className="h2">{movieError}</h2>} */}
-            {isMoviesLoading && (
-               <Spinner
-                  className="mx-auto fs-1"
-                  animation="grow"
-                  variant="secondary"
-               />
-            )}
-            <ListMovies movies={movies} />
-         </div>
+         {movies.length > 0 && (
+            <div className="mb-5">
+               {/* {movieError && <h2 className="h2">{movieError}</h2>} */}
+               {isMoviesLoading && (
+                  <Spinner
+                     className="mx-auto fs-1"
+                     animation="grow"
+                     variant="secondary"
+                  />
+               )}
+               <ListMovies movies={movies} />
+            </div>
+         )}
       </div>
    );
 }

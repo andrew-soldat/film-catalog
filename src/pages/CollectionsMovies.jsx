@@ -45,27 +45,29 @@ function CollectionsMovies() {
    }, [currentPage]);
 
    return (
-      <div className="container">
-         <div className="title mb-3">{currentHeader.name}</div>
-         {moviesError && <h2 className="h2">{moviesError}</h2>}
-         {isMoviesLoading && (
-            <Spinner
-               className="mx-auto d-block fs-1"
-               animation="grow"
-               variant="secondary"
-            />
-         )}
-         <ListMovies movies={movies} />
-         <button
-            type="button"
-            onClick={() => showMore()}
-            className={
-               currentPage === totalPages ? "show-more hide" : "show-more"
-            }
-         >
-            Show more
-         </button>
-      </div>
+      <section>
+         <div className="container">
+            <h1 className="title mb-3">{currentHeader.name}</h1>
+            {moviesError && <h2 className="h2">{moviesError}</h2>}
+            {isMoviesLoading && (
+               <Spinner
+                  className="mx-auto d-block fs-1"
+                  animation="grow"
+                  variant="secondary"
+               />
+            )}
+            <ListMovies movies={movies} />
+            <button
+               type="button"
+               onClick={() => showMore()}
+               className={
+                  currentPage === totalPages ? "show-more hide" : "show-more"
+               }
+            >
+               Show more
+            </button>
+         </div>
+      </section>
    );
 }
 

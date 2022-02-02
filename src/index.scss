@@ -288,6 +288,25 @@ h6 {
       }
    }
 }
+.footer {
+
+   &__body {
+      padding: 20px 0px;
+      border-top: 1px solid rgba(255, 255, 255, 0.5);
+      display: flex;
+      flex-direction: column;
+      justify-content:center;
+      align-items: center;
+   }
+
+   &__author {
+      text-transform: uppercase;
+
+      &_link:hover {
+         color: $color-red;
+      }
+   }
+}
 .input {
    width: 100%;
    max-width: 500px;

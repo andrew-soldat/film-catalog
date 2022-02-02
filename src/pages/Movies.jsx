@@ -62,7 +62,7 @@ function Movies() {
 
    return (
       <div className="container">
-         <div className="mb-5">
+         <section className="mb-5">
             {isListGenresLoading && <h2 className="h2">{listGenresError}</h2>}
             {isListGenresLoading ? (
                <Spinner
@@ -77,8 +77,8 @@ function Movies() {
                   ),
                ]
             )}
-         </div>
-         <div className="mb-5">
+         </section>
+         <section className="mb-5">
             <LinkHeader collection={collections[0]}>Populars now</LinkHeader>
             {isMoviesPopularLoading && (
                <h2 className="h2">{moviesPopularError}</h2>
@@ -99,8 +99,8 @@ function Movies() {
                   ),
                ]
             )}
-         </div>
-         <div className="mb-5">
+         </section>
+         <section className="mb-5">
             <LinkHeader collection={collections[1]}>
                Playing now in theatres
             </LinkHeader>
@@ -123,8 +123,8 @@ function Movies() {
                   ),
                ]
             )}
-         </div>
-         <div className="mb-5">
+         </section>
+         <section className="mb-5">
             <LinkHeader collection={collections[2]}>Top Rated</LinkHeader>
             {isMoviesTopRatedLoading && (
                <h2 className="h2">{moviesTopRatedError}</h2>
@@ -145,7 +145,7 @@ function Movies() {
                   ),
                ]
             )}
-         </div>
+         </section>
       </div>
    );
 }
