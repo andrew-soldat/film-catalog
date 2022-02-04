@@ -56,7 +56,7 @@ function CardMovie({ movie }) {
                         ? IMG_API + movie.poster_path
                         : "assets/img/camera.jpg"
                   }
-                  alt={movie.title}
+                  alt={movie?.title}
                />
                <div className="item-movie__overlay">
                   <div>
@@ -70,7 +70,7 @@ function CardMovie({ movie }) {
                   className="item-movie__title h6 mb-1"
                   onClick={() => router.push(`/watch/${movie.id}`)}
                >
-                  {movie.title}
+                  {movie?.title}
                </div>
                <div className="item-movie__date">
                   {movie.release_date &&

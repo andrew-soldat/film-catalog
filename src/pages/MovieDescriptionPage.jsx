@@ -145,7 +145,7 @@ function MovieDescriptionPage() {
                                  </div>
                               </div>
                            </div>
-                           <Row className="g-4 mb-3">
+                           <Row className="g-2 g-sm-4 mb-3">
                               <Col sm={3} className="movie__subtitle">
                                  {language === "en-US"
                                     ? "Original title"
@@ -155,7 +155,7 @@ function MovieDescriptionPage() {
                                  {movie?.original_title}
                               </Col>
                            </Row>
-                           <Row className="g-4 mb-3">
+                           <Row className="g-2 g-sm-4 mb-3">
                               <Col sm={3} className="movie__subtitle">
                                  Tagline
                               </Col>
@@ -163,7 +163,7 @@ function MovieDescriptionPage() {
                                  "{movie.tagline ? movie.tagline : "-"}"
                               </Col>
                            </Row>
-                           <Row className="g-4 mb-3">
+                           <Row className="g-2 g-sm-4 mb-3">
                               <Col sm={3} className="movie__subtitle">
                                  Country
                               </Col>
@@ -174,7 +174,7 @@ function MovieDescriptionPage() {
                                        .join(", ")}
                               </Col>
                            </Row>
-                           <Row className="g-4 mb-3">
+                           <Row className="g-2 g-sm-4 mb-3">
                               <Col sm={3} className="movie__subtitle">
                                  Genre
                               </Col>
@@ -198,7 +198,7 @@ function MovieDescriptionPage() {
                                     ))}
                               </Col>
                            </Row>
-                           <Row className="g-4 mb-3">
+                           <Row className="g-2 g-sm-4 mb-3">
                               <Col sm={3} className="movie__subtitle">
                                  Release date
                               </Col>
@@ -208,7 +208,7 @@ function MovieDescriptionPage() {
                                     : "-"}
                               </Col>
                            </Row>
-                           <Row className="g-4 mb-3">
+                           <Row className="g-2 g-sm-4 mb-3">
                               <Col sm={3} className="movie__subtitle">
                                  Budget
                               </Col>
@@ -261,7 +261,7 @@ function MovieDescriptionPage() {
                ),
             ]
          )}
-         <div className="mb-5">
+         <section className="mb-5">
             <Tabs
                defaultActiveKey="1"
                id="tab-movie"
@@ -302,7 +302,7 @@ function MovieDescriptionPage() {
                   </Tab>
                )}
             </Tabs>
-         </div>
+         </section>
          <section className="mb-5">
             <h2 className="title">Recommendations</h2>
             {isListOfRecommendedMoviesByIdLoading && (

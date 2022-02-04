@@ -124,6 +124,10 @@ h6 {
    color: $color-white;
    font-weight: 600;
    line-height: 1.35;
+
+   &_black {
+      color: $color-black;
+   }
 }
 .h1 {
    font-size: 30px;
@@ -230,22 +234,25 @@ h6 {
    }
 }
 .header {
-   &__nav {
+
+   &__body {
       padding: 20px 0px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.5);
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
    }
 
    &__logo {
-      color: $color-red;
-      font-size: 24px;
-      text-transform: uppercase;
-
-      &:hover {
-         color: $color-red;
+      img {
+         width: 50px;
+         height: auto;
       }
+   }
+
+   &__nav {
+      display: flex;
+      align-items: center;
    }
 
    &__language {
@@ -287,7 +294,103 @@ h6 {
          color: $color-red;
       }
    }
+
+   &__search {
+      position: relative;
+      width: 25px;
+      height: 25px;
+   }
+
+   &__search_button {
+      background-color: transparent;
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 10;
+      cursor: pointer;
+
+      svg {
+         width: 20px;
+         height: 20px;
+         color: $color-white;
+      }
+   }
 }
+.header-search {
+
+   &._active {
+      .header-search__input {
+         width: 200px;
+         padding: 0 35px 0 15px;
+         border-bottom: 2px solid $color-blue;
+      }
+   }
+
+	&__input {
+		height: 40px;
+		width: 0;
+      padding: 0;
+      color: $color-white;
+      font-size: 16px;
+		background-color: transparent;
+		position: absolute;
+		top: -8px;
+		right: 0;
+		z-index: 5;
+		transition: all 0.3s ease 0s;
+
+
+	}
+
+	&__button {
+
+	}
+}
+.search-menu {
+   background-color: $color-white;
+   color: $color-black;
+   width: 300px;
+   max-height: 300px;
+   overflow-y: auto;
+   position: absolute;
+   top: 40px;
+   right: 0;
+   // opacity: 0;
+   // visibility: hidden;
+
+   &__item {
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      color: $color-black;
+      cursor: pointer;
+
+      &:hover {
+         background-color: $color-gray-light;
+      }
+   }
+   &__img {
+      margin: 0px 10px 0px 0px;
+      flex: 0 1 20%;
+   }
+
+   &__description {
+      flex: 0 1 80%;
+   }
+
+   &__title {
+      font-weight: 600;
+      font-size: 14px;
+   }
+
+   &__text {
+      font-size: 12px;
+   }
+}
+// .header-search__input:focus+.search-menu {
+//    opacity: 1;
+//    visibility: visible;
+// }
 .footer {
 
    &__body {
