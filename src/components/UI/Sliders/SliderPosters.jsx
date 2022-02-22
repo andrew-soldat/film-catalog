@@ -36,7 +36,7 @@ const SliderPosters = ({ list, handleShowImage }) => {
             }}
          >
             {list.map((item) => (
-               <SwiperSlide key={item.name}>
+               <SwiperSlide key={item.file_path}>
                   <CardImage image={item} handleShowImage={handleShowImage} />
                </SwiperSlide>
             ))}

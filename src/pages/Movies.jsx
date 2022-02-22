@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { MoviesService } from "../API/api";
-import { Spinner } from "react-bootstrap";
 import { useFetching } from "../hooks/useFetching";
 import LinkHeader from "../components/UI/Links/LinkHeader";
 import { useGlobalState } from "../GlobalState";
 import SliderMovies from "../components/UI/Sliders/SliderMovies";
 import SliderGenres from "../components/UI/Sliders/SliderGenres";
+import Loader from "../components/UI/Loader/Loader";
 
 function Movies() {
-   let [listGenres, setListGenre] = useState([]);
-   let [moviesNowPlaying, setMoviesNowPlaying] = useState([]);
-   let [moviesPopular, setMoviesPopular] = useState([]);
-   let [moviesTopRated, setMoviesTopRated] = useState([]);
-   let { language, collections } = useGlobalState();
+   const [listGenres, setListGenre] = useState([]);
+   const [moviesNowPlaying, setMoviesNowPlaying] = useState([]);
+   const [moviesPopular, setMoviesPopular] = useState([]);
+   const [moviesTopRated, setMoviesTopRated] = useState([]);
+   const { language, collections } = useGlobalState();
 
    const [fetchListGenresPlaying, isListGenresLoading, listGenresError] =
       useFetching(async () => {
@@ -65,11 +65,7 @@ function Movies() {
          <section className="mb-5">
             {isListGenresLoading && <h2 className="h2">{listGenresError}</h2>}
             {isListGenresLoading ? (
-               <Spinner
-                  className="mx-auto d-block"
-                  animation="border"
-                  variant="light"
-               />
+               <Loader />
             ) : (
                [
                   moviesNowPlaying.length > 0 && (
@@ -84,11 +80,7 @@ function Movies() {
                <h2 className="h2">{moviesPopularError}</h2>
             )}
             {isMoviesPopularLoading ? (
-               <Spinner
-                  className="mx-auto d-block"
-                  animation="border"
-                  variant="light"
-               />
+               <Loader />
             ) : (
                [
                   moviesPopular.length > 0 && (
@@ -108,11 +100,7 @@ function Movies() {
                <h2 className="h2">{moviesNowPlayingError}</h2>
             )}
             {isMoviesNowPlayingLoading ? (
-               <Spinner
-                  className="mx-auto d-block"
-                  animation="border"
-                  variant="light"
-               />
+               <Loader />
             ) : (
                [
                   moviesNowPlaying.length > 0 && (
@@ -130,11 +118,7 @@ function Movies() {
                <h2 className="h2">{moviesTopRatedError}</h2>
             )}
             {isMoviesTopRatedLoading ? (
-               <Spinner
-                  className="mx-auto d-block"
-                  animation="border"
-                  variant="light"
-               />
+               <Loader />
             ) : (
                [
                   moviesTopRated.length > 0 && (

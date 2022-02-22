@@ -1,9 +1,9 @@
-import React from 'react';
-import { useGlobalState } from '../GlobalState';
-import ListMovies from '../components/ListMovies';
+import React from "react";
+import { useGlobalState } from "../GlobalState";
+import ListMovies from "../components/ListMovies";
 
 function Watched() {
-   let { watched } = useGlobalState();
+   const { watched } = useGlobalState();
 
    return (
       <section className="page-list">

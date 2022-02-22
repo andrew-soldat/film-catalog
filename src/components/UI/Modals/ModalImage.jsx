@@ -3,7 +3,6 @@ import { Modal } from "react-bootstrap";
 
 function ModalImage(props) {
    const IMG_API = "https://image.tmdb.org/t/p/original/";
-   console.log(props.filePath);
 
    return (
       <Modal
@@ -16,7 +15,7 @@ function ModalImage(props) {
          <Modal.Body>
             <img
                src={props.filePath && IMG_API + props.filePath}
-               alt="No photo"
+               alt="Foto"
             />
          </Modal.Body>
       </Modal>

@@ -1,12 +1,12 @@
-import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react/swiper-react.js';
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react/swiper-react.js";
 import SwiperCore, {
    Keyboard,
    Scrollbar,
    Navigation,
    Pagination,
-} from 'swiper';
-import CardImage from '../../CardImage';
+} from "swiper";
+import CardImage from "../../CardImage";
 SwiperCore.use([Keyboard, Scrollbar, Navigation, Pagination]);
 
 const SliderImages = ({ list, handleShowImage }) => {
@@ -33,7 +33,7 @@ const SliderImages = ({ list, handleShowImage }) => {
             }}
          >
             {list.map((item) => (
-               <SwiperSlide key={item.name}>
+               <SwiperSlide key={item.file_path}>
                   <CardImage image={item} handleShowImage={handleShowImage} />
                </SwiperSlide>
             ))}

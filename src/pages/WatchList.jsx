@@ -3,7 +3,7 @@ import { useGlobalState } from '../GlobalState';
 import ListMovies from '../components/ListMovies';
 
 function WatchList() {
-   let { watchList } = useGlobalState();
+   const { watchList } = useGlobalState();
 
    return (
       <section className="page-list">

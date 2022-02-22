@@ -33,7 +33,7 @@ const SliderTrailer = ({ listTrailers, handleShow }) => {
             }}
          >
             {listTrailers.map((item) => (
-               <SwiperSlide key={item.name}>
+               <SwiperSlide key={item.id}>
                   <CardTrailer trailer={item} handleShow={handleShow} />
                </SwiperSlide>
             ))}

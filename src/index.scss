@@ -53,7 +53,7 @@ body {
 
 body {
    line-height: 1;
-   font-family: 'Roboto', sans-serif;
+   font-family: "Roboto", sans-serif;
    -ms-text-size-adjust: 100%;
    -moz-text-size-adjust: 100%;
    -webkit-text-size-adjust: 100%;
@@ -70,7 +70,7 @@ body {
 input,
 button,
 textarea {
-   font-family: 'Georgia';
+   font-family: "Georgia";
 }
 
 input::-ms-clear {
@@ -103,6 +103,18 @@ ul li {
 }
 img {
    vertical-align: top;
+}
+::-webkit-scrollbar {
+   width: 4px;
+   height: 8px;
+   background-color: $color-white;
+}
+::-webkit-scrollbar-thumb {
+   background-color: $color-gray;
+   border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+   background-color: $color-gray-light;
 }
 h1,
 h2,
@@ -191,7 +203,7 @@ h6 {
    margin: 0px 0px 25px 0px;
 
    &:before {
-      content: '';
+      content: "";
       width: 80px;
       height: 3px;
       background-color: $color-white;
@@ -201,6 +213,7 @@ h6 {
    }
 }
 .link-header {
+   display: inline-block;
    font-weight: 700;
    transition: all 0.3s ease 0s;
    cursor: pointer;
@@ -234,7 +247,6 @@ h6 {
    }
 }
 .header {
-
    &__body {
       padding: 20px 0px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.5);
@@ -253,23 +265,6 @@ h6 {
    &__nav {
       display: flex;
       align-items: center;
-   }
-
-   &__language {
-      padding: 8px;
-		opacity: 0.5;
-      transition: all 0.3s ease 0s;
-      cursor: pointer;
-
-      &:hover {
-         opacity: 1;
-      }
-
-      &.active {
-			opacity: 1;
-         text-decoration: underline;
-         pointer-events: none;
-      }
    }
 
    &__list {
@@ -294,69 +289,92 @@ h6 {
          color: $color-red;
       }
    }
+}
+.header-search {
+   position: relative;
+   width: 25px;
+   height: 25px;
+   z-index: 10;
 
-   &__search {
-      position: relative;
-      width: 25px;
-      height: 25px;
+   &__form {
+      &._active {
+         input {
+            width: 200px;
+            padding: 0 30px 0 40px;
+            border-bottom: 2px solid $color-blue;
+         }
+
+         .header-search__button {
+            right: 170px;
+         }
+      }
    }
 
-   &__search_button {
+   input {
+      height: 40px;
+      width: 0;
+      padding: 0;
+      color: $color-white;
+      font-size: 16px;
       background-color: transparent;
       position: absolute;
-      top: 0;
+      top: -8px;
       right: 0;
+      z-index: 5;
+      transition: all 0.3s ease 0s;
+      z-index: 10;
+   }
+
+   &__button,
+   &__reset {
+      position: absolute;
+      top: 3px;
       z-index: 10;
       cursor: pointer;
+      transition: all 0.3s ease 0s;
+
+      svg {
+         color: $color-white;
+      }
+   }
+
+   &__button {
+      right: 0;
 
       svg {
          width: 20px;
          height: 20px;
-         color: $color-white;
-      }
-   }
-}
-.header-search {
-
-   &._active {
-      .header-search__input {
-         width: 200px;
-         padding: 0 35px 0 15px;
-         border-bottom: 2px solid $color-blue;
       }
    }
 
-	&__input {
-		height: 40px;
-		width: 0;
-      padding: 0;
-      color: $color-white;
-      font-size: 16px;
-		background-color: transparent;
-		position: absolute;
-		top: -8px;
-		right: 0;
-		z-index: 5;
-		transition: all 0.3s ease 0s;
+   &__reset {
+      right: 7px;
 
+      svg {
+         width: 15px;
+         height: 15px;
+      }
 
-	}
-
-	&__button {
-
-	}
+      &:hover {
+         svg {
+            color: $color-red;
+         }
+      }
+   }
 }
 .search-menu {
    background-color: $color-white;
    color: $color-black;
    width: 300px;
-   max-height: 300px;
-   overflow-y: auto;
    position: absolute;
    top: 40px;
    right: 0;
-   // opacity: 0;
-   // visibility: hidden;
+
+   &__list {
+      max-height: 300px;
+      overscroll-behavior-y: contain;
+      overflow-y: auto;
+   }
 
    &__item {
       padding: 10px;
@@ -386,19 +404,55 @@ h6 {
    &__text {
       font-size: 12px;
    }
+
+   &__no-results {
+      padding: 20px;
+      font-size: 20px;
+      color: $color-gray;
+      text-align: center;
+   }
+
+   &__all-results {
+      display: block;
+      padding: 15px;
+      width: 100%;
+      text-align: center;
+      font-size: 16px;
+      font-weight: 600;
+      color: $color-white;
+      background-color: $color-blue-light;
+      position: sticky;
+      left: 0;
+      right: 0;
+      bottom: 0;
+
+      &:hover {
+         color: $color-white;
+         background-color: $color-blue;
+      }
+   }
 }
 // .header-search__input:focus+.search-menu {
 //    opacity: 1;
 //    visibility: visible;
 // }
+.overlay._active {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background-color: rgba(0, 0, 0, 0.5);
+   transition: all 0.5s ease 0s;
+   z-index: 2;
+}
 .footer {
-
    &__body {
       padding: 20px 0px;
       border-top: 1px solid rgba(255, 255, 255, 0.5);
       display: flex;
       flex-direction: column;
-      justify-content:center;
+      justify-content: center;
       align-items: center;
    }
 
@@ -410,18 +464,53 @@ h6 {
       }
    }
 }
-.input {
+.search-form {
    width: 100%;
-   max-width: 500px;
-   padding: 10px 20px;
-   font-size: 20px;
-   color: $color-white;
-   background-color: transparent;
-   border-bottom: 2px solid $color-blue;
-   transition: all 0.3s ease 0s;
+   position: relative;
 
-   &:focus {
-      border-color: $color-blue-light;
+   input {
+      width: 100%;
+      padding: 10px 50px;
+      font-size: 20px;
+      color: $color-white;
+      background-color: transparent;
+      border-bottom: 2px solid $color-blue;
+      transition: all 0.3s ease 0s;
+
+      &:focus {
+         border-color: $color-blue-light;
+      }
+   }
+
+   &__icon {
+      position: absolute;
+      top: 50%;
+      left: 15px;
+      transform: translateY(-10px);
+
+      svg {
+         font-size: 20px;
+         color: $color-white;
+      }
+   }
+
+   &__reset {
+      position: absolute;
+      top: 50%;
+      right: 15px;
+      transform: translateY(-10px);
+      cursor: pointer;
+
+      &:hover {
+         svg {
+            color: $color-red;
+         }
+      }
+
+      svg {
+         font-size: 20px;
+         color: $color-white;
+      }
    }
 }
 .button {
@@ -633,6 +722,7 @@ h6 {
 }
 .swiper-tab-card-movie {
    margin: -10px;
+
    .swiper-button-prev,
    .swiper-button-next {
       top: 41%;
@@ -641,8 +731,8 @@ h6 {
          transition: all 0.3s ease 0s;
          color: $color-white;
          opacity: 0.5;
-
       }
+
       &:hover {
          &:after {
             opacity: 1;
@@ -678,7 +768,6 @@ h6 {
    }
 }
 .movie {
-
    &__subtitle {
       color: $color-gray;
    }
@@ -792,7 +881,7 @@ h6 {
    .modal-body {
       padding: 0;
       display: flex;
-      justify-content:center;
+      justify-content: center;
       align-items: center;
       text-align: center;
       overflow: auto;
@@ -851,8 +940,8 @@ h6 {
 }
 .view-all {
    height: 100%;
-	width: 100%;
-	display: block;
+   width: 100%;
+   display: block;
    padding: 16px;
    font-size: 15px;
    text-align: center;
@@ -881,9 +970,9 @@ h6 {
    }
 }
 .show-more {
-	width: 100%;
-	margin: 24px 0px 0px 0px;
-	padding: 16px;
+   width: 100%;
+   margin: 24px 0px 0px 0px;
+   padding: 16px;
    font-size: 16px;
    text-align: center;
    color: $color-white;
@@ -891,14 +980,10 @@ h6 {
    border-radius: 5px;
    transition: all 0.3s ease 0s;
 
-	&:hover {
+   &:hover {
       background-color: $color-blue-light;
       color: $color-white;
    }
-
-	&.hide {
-		display: none;
-	}
 }
 .pagination {
    padding: 20px;
@@ -954,7 +1039,7 @@ h6 {
    position: relative;
 
    &:before {
-      content:'';
+      content: "";
       width: 100%;
       height: 1px;
       background-color: rgba(255, 255, 255, 0.5);
@@ -974,7 +1059,6 @@ h6 {
       font-size: 20px;
       text-transform: uppercase;
       border: none;
-
 
       &.active {
          color: $color-red;

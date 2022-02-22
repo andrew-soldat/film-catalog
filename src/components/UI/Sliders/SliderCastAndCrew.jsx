@@ -1,12 +1,12 @@
-import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react/swiper-react.js';
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react/swiper-react.js";
 import SwiperCore, {
    Keyboard,
    Scrollbar,
    Navigation,
    Pagination,
-} from 'swiper';
-import CardCastAndCrew from '../../CardCastAndCrew';
+} from "swiper";
+import CardCastAndCrew from "../../CardCastAndCrew";
 SwiperCore.use([Keyboard, Scrollbar, Navigation, Pagination]);
 
 const SliderCastAndCrew = ({ list }) => {
@@ -36,7 +36,7 @@ const SliderCastAndCrew = ({ list }) => {
             }}
          >
             {list.map((item) => (
-               <SwiperSlide key={item.name}>
+               <SwiperSlide key={item.credit_id}>
                   <CardCastAndCrew item={item} />
                </SwiperSlide>
             ))}

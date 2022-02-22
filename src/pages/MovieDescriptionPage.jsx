@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import { Row, Col, Tabs, Tab, Spinner } from "react-bootstrap";
+import { Row, Col, Tabs, Tab } from "react-bootstrap";
 import { MoviesService } from "../API/api";
 import { getDate } from "../utils/getDate";
 import { useGlobalState } from "../GlobalState";
@@ -10,31 +10,29 @@ import AddRemoveFromWatched from "../components/AddRemoveFromWatched";
 import ButtonPlay from "../components/UI/Buttons/ButtonPlay";
 import ModalTrailer from "../components/UI/Modals/ModalTrailer";
 import ModalImage from "../components/UI/Modals/ModalImage";
-import SliderMovies from "../components/UI/Sliders/SliderMovies";
 import { useFetching } from "../hooks/useFetching";
 import SliderCastAndCrew from "../components/UI/Sliders/SliderCastAndCrew";
 import SliderTrailer from "../components/UI/Sliders/SliderTrailer";
 import SliderImages from "../components/UI/Sliders/SliderImages";
 import SliderPosters from "../components/UI/Sliders/SliderPosters";
+import Loader from "../components/UI/Loader/Loader";
+import RecommendedMovies from "../components/RecommendedMovies";
 
 function MovieDescriptionPage() {
    const IMG_API = "https://image.tmdb.org/t/p/w500";
    let params = useParams();
    let router = useHistory();
-
-   let [movie, setMovie] = useState({});
-   let [listCast, setListCast] = useState([]);
-   let [listCrew, setListCrew] = useState([]);
-   let [listTrailers, setListVideo] = useState([]);
-   let [keyTrailer, setKeyTrailer] = useState("");
-   let [listBackdrops, setListBackdrops] = useState([]);
-   let [listPosters, setListPosters] = useState([]);
-   let [filePath, setFilePath] = useState("");
-   let [showTrailer, setShowTrailer] = useState(false);
-   let [showImage, setShowImage] = useState(false);
-   let [listOfRecommendedMovies, setListOfRecommendedMovies] = useState([]);
-
-   let { language } = useGlobalState();
+   const [movie, setMovie] = useState({});
+   const [listCast, setListCast] = useState([]);
+   const [listCrew, setListCrew] = useState([]);
+   const [listTrailers, setListVideo] = useState([]);
+   const [keyTrailer, setKeyTrailer] = useState("");
+   const [listBackdrops, setListBackdrops] = useState([]);
+   const [listPosters, setListPosters] = useState([]);
+   const [filePath, setFilePath] = useState("");
+   const [showTrailer, setShowTrailer] = useState(false);
+   const [showImage, setShowImage] = useState(false);
+   const { language } = useGlobalState();
 
    function handleShow(key) {
       setKeyTrailer(key);
@@ -76,34 +74,18 @@ function MovieDescriptionPage() {
       setListPosters(response.posters);
    }
 
-   const [
-      fetchListOfRecommendedMoviesById,
-      isListOfRecommendedMoviesByIdLoading,
-      listOfRecommendedMoviesByIdError,
-   ] = useFetching(async () => {
-      const response = await MoviesService.getListOfRecommendedMoviesById(
-         language,
-         params.id
-      );
-      setListOfRecommendedMovies(response.results);
-   });
-
    useEffect(() => {
       fetchMovieById();
       fetchCastAndCrewMovie();
       fetchVideosMovie();
       fetchImagesMovie();
-      fetchListOfRecommendedMoviesById();
    }, [params.id]);
 
    return (
       <div className="container">
+         {isMovieByIdLoading && <h2 className="h2">{movieByIdError}</h2>}
          {isMovieByIdLoading ? (
-            <Spinner
-               className="mx-auto d-block"
-               animation="border"
-               variant="light"
-            />
+            <Loader />
          ) : (
             [
                movie && (
@@ -303,25 +285,7 @@ function MovieDescriptionPage() {
                )}
             </Tabs>
          </section>
-         <section className="mb-5">
-            <h2 className="title">Recommendations</h2>
-            {isListOfRecommendedMoviesByIdLoading && (
-               <h2 className="h2">{listOfRecommendedMoviesByIdError}</h2>
-            )}
-            {isListOfRecommendedMoviesByIdLoading ? (
-               <Spinner
-                  className="mx-auto d-block"
-                  animation="border"
-                  variant="light"
-               />
-            ) : (
-               [
-                  listOfRecommendedMovies.length > 0 && (
-                     <SliderMovies listMovies={listOfRecommendedMovies} />
-                  ),
-               ]
-            )}
-         </section>
+         <RecommendedMovies id={params.id} />
          {listTrailers && (
             <ModalTrailer
                keyTrailer={keyTrailer}

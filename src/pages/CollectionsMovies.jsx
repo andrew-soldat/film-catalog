@@ -4,7 +4,8 @@ import { useGlobalState } from "../GlobalState";
 import { MoviesService } from "../API/api";
 import ListMovies from "../components/ListMovies";
 import { useFetching } from "../hooks/useFetching";
-import { Spinner } from "react-bootstrap";
+import Loader from "../components/UI/Loader/Loader";
+import ButtonShowMore from "../components/UI/Buttons/ButtonShowMore";
 
 function CollectionsMovies() {
    const listHeader = [
@@ -12,14 +13,14 @@ function CollectionsMovies() {
       { name: "Playing now in theatres", collection: "now_playing" },
       { name: "Top Rated", collection: "top_rated" },
    ];
-   let [movies, setMovies] = useState([]);
+   const [movies, setMovies] = useState([]);
    const [currentPage, setCurrentPage] = useState(1);
    const [totalPages, setTotalPages] = useState(0);
    let params = useParams();
-   let currentHeader = listHeader.find(
+   const currentHeader = listHeader.find(
       (item) => item.collection === params.collection
    );
-   let { language } = useGlobalState();
+   const { language } = useGlobalState();
 
    const [fetchListMovies, isMoviesLoading, moviesError] = useFetching(
       async () => {
@@ -28,7 +29,6 @@ function CollectionsMovies() {
             params.collection,
             currentPage
          );
-         console.log(response.results);
          setMovies([...movies, ...response.results]);
          setTotalPages(response.total_pages);
       }
@@ -49,23 +49,18 @@ function CollectionsMovies() {
          <div className="container">
             <h1 className="title mb-3">{currentHeader.name}</h1>
             {moviesError && <h2 className="h2">{moviesError}</h2>}
-            {isMoviesLoading && (
-               <Spinner
-                  className="mx-auto d-block fs-1"
-                  animation="grow"
-                  variant="secondary"
-               />
-            )}
+            {isMoviesLoading && <Loader />}
             <ListMovies movies={movies} />
-            <button
-               type="button"
-               onClick={() => showMore()}
-               className={
-                  currentPage === totalPages ? "show-more hide" : "show-more"
-               }
-            >
-               Show more
-            </button>
+            {currentPage !== totalPages && (
+               <ButtonShowMore
+                  onClick={showMore}
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  type="button"
+               >
+                  Show more
+               </ButtonShowMore>
+            )}
          </div>
       </section>
    );
