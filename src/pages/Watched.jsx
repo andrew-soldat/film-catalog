@@ -6,7 +6,7 @@ function Watched() {
    const { watched } = useGlobalState();
 
    return (
-      <section className="page-list">
+      <section className="page-list py-5">
          <div className="page-list__body container">
             <h1 className="title">Watched</h1>
             {watched.length > 0 ? (

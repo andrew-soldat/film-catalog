@@ -82,7 +82,7 @@ function MovieDescriptionPage() {
    }, [params.id]);
 
    return (
-      <div className="container">
+      <div className="container py-5">
          {isMovieByIdLoading && <h2 className="h2">{movieByIdError}</h2>}
          {isMovieByIdLoading ? (
             <Loader />

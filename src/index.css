@@ -56,7 +56,7 @@ body._lock {
 input,
 button,
 textarea {
-  font-family: "Georgia";
+  font-family: inherit;
 }
 
 input::-ms-clear {
@@ -294,7 +294,7 @@ h6 {
   height: 25px;
   z-index: 10;
 }
-.header-search__form._active .header-search__input {
+.header-search__form._active input {
   width: 200px;
   padding: 0 30px 0 40px;
   border-bottom: 2px solid #0026a3;
@@ -302,7 +302,7 @@ h6 {
 .header-search__form._active .header-search__button {
   right: 170px;
 }
-.header-search__input {
+.header-search input {
   height: 40px;
   width: 0;
   padding: 0;
@@ -318,6 +318,7 @@ h6 {
 }
 .header-search__button, .header-search__reset {
   position: absolute;
+  top: 3px;
   z-index: 10;
   cursor: pointer;
   transition: all 0.3s ease 0s;
@@ -326,7 +327,6 @@ h6 {
   color: #f3f3f3;
 }
 .header-search__button {
-  top: 0;
   right: 0;
 }
 .header-search__button svg {
@@ -334,7 +334,6 @@ h6 {
   height: 20px;
 }
 .header-search__reset {
-  top: 3px;
   right: 7px;
 }
 .header-search__reset svg {
@@ -422,21 +421,36 @@ h6 {
 .footer__body {
   padding: 20px 0px;
   border-top: 1px solid rgba(255, 255, 255, 0.5);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
-.footer__author {
-  text-transform: uppercase;
+.footer__logo img {
+  width: 150px;
 }
-.footer__author_link:hover {
+.footer__copyright {
+  text-align: right;
+}
+.footer__author a {
+  font-size: 18px;
+  text-decoration: underline;
+}
+.footer__author a:hover {
   color: #cc0000;
 }
 
 .search-form {
   width: 100%;
   position: relative;
+}
+.search-form input {
+  width: 100%;
+  padding: 10px 50px;
+  font-size: 20px;
+  color: #f3f3f3;
+  background-color: transparent;
+  border-bottom: 2px solid #0026a3;
+  transition: all 0.3s ease 0s;
+}
+.search-form input:focus {
+  border-color: #436fff;
 }
 .search-form__icon {
   position: absolute;
@@ -461,19 +475,6 @@ h6 {
 .search-form__reset svg {
   font-size: 20px;
   color: #f3f3f3;
-}
-
-.input {
-  width: 100%;
-  padding: 10px 50px;
-  font-size: 20px;
-  color: #f3f3f3;
-  background-color: transparent;
-  border-bottom: 2px solid #0026a3;
-  transition: all 0.3s ease 0s;
-}
-.input:focus {
-  border-color: #436fff;
 }
 
 .button {
@@ -901,9 +902,6 @@ h6 {
 .show-more:hover {
   background-color: #436fff;
   color: #f3f3f3;
-}
-.show-more.hide {
-  display: none;
 }
 
 .pagination {

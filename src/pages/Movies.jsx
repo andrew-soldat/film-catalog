@@ -61,14 +61,14 @@ function Movies() {
    }, []);
 
    return (
-      <div className="container">
+      <div className="container py-5">
          <section className="mb-5">
             {isListGenresLoading && <h2 className="h2">{listGenresError}</h2>}
             {isListGenresLoading ? (
                <Loader />
             ) : (
                [
-                  moviesNowPlaying.length > 0 && (
+                  listGenres.length > 0 && (
                      <SliderGenres listGenres={listGenres} />
                   ),
                ]

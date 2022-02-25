@@ -70,7 +70,7 @@ body {
 input,
 button,
 textarea {
-   font-family: "Georgia";
+   font-family: inherit;
 }
 
 input::-ms-clear {
@@ -446,21 +446,104 @@ h6 {
    transition: all 0.5s ease 0s;
    z-index: 2;
 }
+.welcome-block {
+   padding: 0 20px;
+   background: url('./assets/img/main-bg-01.jpg') center / cover no-repeat;
+
+   &__title {
+      font-size: 60px;
+   }
+
+   &__greetings {
+      padding: 70px 0 50px;
+   }
+
+   &__search {
+      padding: 100px 0 70px;
+   }
+}
 .footer {
    &__body {
       padding: 20px 0px;
       border-top: 1px solid rgba(255, 255, 255, 0.5);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+   }
+
+   &__logo img {
+      width: 150px;
+   }
+
+   &__copyright {
+      text-align: right;
    }
 
    &__author {
-      text-transform: uppercase;
+      a {
+         font-size: 18px;
+         text-decoration: underline;
 
-      &_link:hover {
-         color: $color-red;
+         &:hover {
+            color: $color-red;
+         }
+      }
+   }
+}
+.main-search-form {
+   display: flex;
+
+   &__input {
+      position: relative;
+      flex: 1 1 100%;
+
+      input {
+         width: 100%;
+         padding: 10px 45px 10px 20px;
+         font-size: 20px;
+         color: $color-black;
+         background-color: $color-white;
+         border: 2px solid transparent;
+         border-top-left-radius: 5px;
+         border-bottom-left-radius: 5px;
+         transition: all 0.3s ease 0s;
+
+         &:focus {
+            border-color: $color-blue-light;
+         }
+      }
+   }
+
+
+
+   &__btn {
+      padding: 15px 20px;
+      font-size: 18px;
+      color: $color-white;
+      text-transform: uppercase;
+      background-color: $color-blue-light;
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+
+      &:hover {
+         color: $color-white;
+         background-color: $color-blue;
+      }
+   }
+
+   &__reset {
+      position: absolute;
+      top: 50%;
+      right: 15px;
+      transform: translateY(-10px);
+      cursor: pointer;
+
+      &:hover {
+         svg {
+            color: $color-red;
+         }
+      }
+
+      svg {
+         font-size: 20px;
+         color: $color-black;
       }
    }
 }

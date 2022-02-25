@@ -61,7 +61,7 @@ function SearchPage() {
    }, [currentPage]);
 
    return (
-      <div className="container">
+      <div className="container py-5">
          <div className="mb-5">
             <form className="search-form">
                <div className="search-form__icon">

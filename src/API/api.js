@@ -1,12 +1,18 @@
-import axios from 'axios';
+import axios from "axios";
 
 const instance = axios.create({
-   baseURL: 'https://api.themoviedb.org/3/',
+   baseURL: "https://api.themoviedb.org/3/",
 });
 
-const apiKey = '076fc865efeb5c33f6c3d84f0496217d';
+const apiKey = "076fc865efeb5c33f6c3d84f0496217d";
 
 export const MoviesService = {
+   async getTrendingMovies(language) {
+      const response = await instance.get(
+         `trending/movie/day?api_key=${apiKey}&language=${language}`
+      );
+      return response.data;
+   },
 
    async getCollectionMovies(language, collection, page = 1) {
       const response = await instance.get(
@@ -16,8 +22,10 @@ export const MoviesService = {
    },
 
    async getListGenres(language) {
-   	const response = await instance.get(`genre/movie/list?api_key=${apiKey}&language=${language}`)
-   	return response.data;
+      const response = await instance.get(
+         `genre/movie/list?api_key=${apiKey}&language=${language}`
+      );
+      return response.data;
    },
 
    async getListMoviesByGenre(language, id, page = 1) {
@@ -42,22 +50,30 @@ export const MoviesService = {
    },
 
    async getVideosMovieById(language, id) {
-      const response = await instance.get(`movie/${id}/videos?api_key=${apiKey}&language=${language}`)
+      const response = await instance.get(
+         `movie/${id}/videos?api_key=${apiKey}&language=${language}`
+      );
       return response.data;
    },
 
    async getCastAndCrewMovieById(language, id) {
-   	const response = await instance.get(`movie/${id}/credits?api_key=${apiKey}&language=${language}`)
-   	return response.data;
+      const response = await instance.get(
+         `movie/${id}/credits?api_key=${apiKey}&language=${language}`
+      );
+      return response.data;
    },
 
    async getImagesMovieById(id) {
-   	const response = await instance.get(`movie/${id}/images?api_key=${apiKey}`)
-   	return response.data;
+      const response = await instance.get(
+         `movie/${id}/images?api_key=${apiKey}`
+      );
+      return response.data;
    },
 
    async getListOfRecommendedMoviesById(language, id) {
-   	const response = await instance.get(`movie/${id}/recommendations?api_key=${apiKey}&language=${language}`)
-   	return response.data;
-   }
+      const response = await instance.get(
+         `movie/${id}/recommendations?api_key=${apiKey}&language=${language}`
+      );
+      return response.data;
+   },
 };

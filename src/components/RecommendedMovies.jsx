@@ -26,7 +26,7 @@ function RecommendedMovies({ id }) {
    }, [id]);
 
    return (
-      <section className="mb-5">
+      <section>
          <h2 className="title">Recommendations</h2>
          {isListOfRecommendedMoviesByIdLoading && (
             <h2 className="h2">{listOfRecommendedMoviesByIdError}</h2>

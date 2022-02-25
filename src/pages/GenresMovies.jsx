@@ -40,7 +40,7 @@ function GenresMovies() {
 
    return (
       <section>
-         <div className="container">
+         <div className="container py-5">
             <h1 className="title mb-3">{genre && genre.name}</h1>
             {moviesError && <h2 className="h2">{moviesError}</h2>}
             {isMoviesLoading && <Loader />}
