@@ -92,9 +92,7 @@ function Main() {
             ) : (
                [
                   moviesTrending.length > 0 && (
-                     <SliderMovies
-                        listMovies={moviesTrending}
-                     />
+                     <SliderMovies listMovies={moviesTrending} />
                   ),
                ]
             )}

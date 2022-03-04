@@ -13,10 +13,7 @@ function ModalImage(props) {
       >
          <Modal.Header closeButton></Modal.Header>
          <Modal.Body>
-            <img
-               src={props.filePath && IMG_API + props.filePath}
-               alt="Foto"
-            />
+            <img src={props.filePath && IMG_API + props.filePath} alt="Foto" />
          </Modal.Body>
       </Modal>
    );

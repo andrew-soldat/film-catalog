@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 
-const ButtonSmall = ({children, ...props}) => {
-	return (
+const ButtonSmall = ({ children, ...props }) => {
+   return (
       <button className="button-small" {...props}>
-			{children}
-		</button>
+         {children}
+      </button>
    );
-}
+};
 
 export default ButtonSmall;

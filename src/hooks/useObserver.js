@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect } from "react";
 
 export const useObserver = (ref, canLoad, isLoading, callback) => {
    const observer = useRef();

@@ -10,10 +10,10 @@ const Footer = () => {
                   <Link to="/" className="footer__logo">
                      <img src="assets/img/logo-02.svg" alt="Logo" />
                   </Link>
-                  <div className="footer__author mt-3 mt-sm-0">Created by <a href="https://github.com/andrew-soldat"
-                        target="blank"
-                     >
-                     ANDREW BLISHCH
+                  <div className="footer__author mt-3 mt-sm-0">
+                     Created by{" "}
+                     <a href="https://github.com/andrew-soldat" target="blank">
+                        ANDREW BLISHCH
                      </a>
                   </div>
                </div>

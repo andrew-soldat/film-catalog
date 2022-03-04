@@ -1,6 +1,6 @@
-import React from 'react';
-import { useGlobalState } from '../GlobalState';
-import ListMovies from '../components/ListMovies';
+import React from "react";
+import { useGlobalState } from "../GlobalState";
+import ListMovies from "../components/ListMovies";
 
 function WatchList() {
    const { watchList } = useGlobalState();

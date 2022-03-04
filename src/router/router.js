@@ -1,11 +1,11 @@
-import Main from '../pages/Main'
-import SearchPage from '../pages/SearchPage'
-import Movies from '../pages/Movies'
-import CollectionsMovies from '../pages/CollectionsMovies'
-import GenresMovies from '../pages/GenresMovies'
-import MovieDescriptionPage from '../pages/MovieDescriptionPage'
-import WatchList from '../pages/WatchList'
-import Watched from '../pages/Watched'
+import Main from "../pages/Main";
+import SearchPage from "../pages/SearchPage";
+import Movies from "../pages/Movies";
+import CollectionsMovies from "../pages/CollectionsMovies";
+import GenresMovies from "../pages/GenresMovies";
+import MovieDescriptionPage from "../pages/MovieDescriptionPage";
+import WatchList from "../pages/WatchList";
+import Watched from "../pages/Watched";
 // import Error from '../pages/Error';
 
 export const routes = [

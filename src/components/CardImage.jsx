@@ -2,7 +2,7 @@ import React from "react";
 
 function CardImage({ image, handleShowImage }) {
    const IMG_API = "https://image.tmdb.org/t/p/original/";
-   
+
    return (
       <div className="tab-card-movie">
          <div className="tab-card-movie__img">

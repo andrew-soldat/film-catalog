@@ -1,9 +1,9 @@
 export default function setVoteClass(vote) {
    if (vote >= 8) {
-      return 'green';
+      return "green";
    } else if (vote >= 5) {
-      return 'yellow';
+      return "yellow";
    } else {
-      return 'red';
+      return "red";
    }
 }

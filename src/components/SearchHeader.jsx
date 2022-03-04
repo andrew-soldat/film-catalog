@@ -14,7 +14,7 @@ const SearchHeader = () => {
    const [movies, setMovies] = useState([]);
    const [searchQuery, setSearchQuery] = useState("");
 
-   const [fetchMovies, isMoviesLoading, movieError] = useFetching(async () => {
+   const [fetchMovies] = useFetching(async () => {
       const response = await MoviesService.searchMovies(language, searchQuery);
       setMovies(response.results);
    });

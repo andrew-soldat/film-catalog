@@ -1,8 +1,8 @@
-import Header from './components/Header';
-import { HashRouter } from 'react-router-dom';
-import AppRouter from './components/AppRouter';
-import { GlobalProvider } from './GlobalState';
-import Footer from './components/Footer';
+import Header from "./components/Header";
+import { HashRouter } from "react-router-dom";
+import AppRouter from "./components/AppRouter";
+import { GlobalProvider } from "./GlobalState";
+import Footer from "./components/Footer";
 
 function App() {
    return (

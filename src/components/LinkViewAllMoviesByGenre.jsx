@@ -1,5 +1,5 @@
-import React from 'react';
-import { useHistory } from 'react-router';
+import React from "react";
+import { useHistory } from "react-router";
 
 function LinkViewAllMoviesByGenres({ name }) {
    let router = useHistory();
@@ -7,12 +7,18 @@ function LinkViewAllMoviesByGenres({ name }) {
    return (
       <div
          className="view-all"
-         onClick={() => router.push(`/movies/${name.toLowerCase().replace(/\s/g, '_')}`)}
+         onClick={() =>
+            router.push(`/movies/${name.toLowerCase().replace(/\s/g, "_")}`)
+         }
       >
-			<div>
-				<img className="img-fluid" src={`assets/img/icons/${name}.png`} alt={name} />
-			</div>
-			<div className="link-genre__name mt-3">{name}</div>
+         <div>
+            <img
+               className="img-fluid"
+               src={`assets/img/icons/${name}.png`}
+               alt={name}
+            />
+         </div>
+         <div className="link-genre__name mt-3">{name}</div>
       </div>
    );
 }
