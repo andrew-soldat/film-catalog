@@ -25,7 +25,6 @@ function Main() {
       setIsActiveInput(false);
    };
 
-
    return (
       <div className="container">
          <div className="welcome-block mb-5">

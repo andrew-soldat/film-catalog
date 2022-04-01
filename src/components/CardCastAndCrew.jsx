@@ -10,7 +10,7 @@ function CardCastAndCrew({ item }) {
                src={
                   item.profile_path
                      ? IMG_API + item.profile_path
-                     : "../assets/img/avatar-default.jpg"
+                     : "./assets/img/avatar-default.jpg"
                }
                alt={item?.name}
                className="img-fluid"
