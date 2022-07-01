@@ -7,38 +7,28 @@ import { useGlobalState } from "../GlobalState";
 import Loader from "../components/UI/Loader/Loader";
 import { useLocation } from "react-router-dom";
 import { Search, XLg } from "react-bootstrap-icons";
-import ButtonShowMore from "../components/UI/Buttons/ButtonShowMore";
 
 function SearchPage() {
    let { state } = useLocation();
    const [searchQuery, setSearchQuery] = useState(state || "");
    const [movies, setMovies] = useState([]);
-   const [currentPage, setCurrentPage] = useState(1);
-   const [totalPages, setTotalPages] = useState(0);
    const [isActive, setIsActive] = useState(state ? true : false);
    const { language } = useGlobalState();
 
    const [fetchMovies, isMoviesLoading, movieError] = useFetching(async () => {
-      const response = await MoviesService.searchMovies(
-         language,
-         searchQuery,
-         currentPage
-      );
-      setMovies([...movies, ...response.results]);
-      setTotalPages(response.total_pages);
+      const response = await MoviesService.searchMovies(language, searchQuery);
+      setMovies(response.results);
    });
 
    const onChange = (e) => {
-      setSearchQuery(e.target.value);
 
+      setSearchQuery(e.target.value);
       if (e.target.value.length > 1) {
          setIsActive(true);
          fetchMovies();
       } else {
          setMovies([]);
          setIsActive(false);
-         setCurrentPage(1);
-         setTotalPages(0);
       }
    };
 
@@ -46,20 +36,12 @@ function SearchPage() {
       setSearchQuery("");
       setMovies([]);
       setIsActive(false);
-      setCurrentPage(1);
-      setTotalPages(0);
-   };
-
-   const showMore = () => {
-      if (currentPage < totalPages) {
-         setCurrentPage((prevState) => prevState + 1);
-      }
    };
 
    useEffect(() => {
       fetchMovies();
-   }, [currentPage]);
-
+   }, []);
+   
    return (
       <div className="container py-5">
          <div className="mb-5">
@@ -92,17 +74,7 @@ function SearchPage() {
                <div className="no-movies">
                   <h2 className="no-movies__title">Nothing found</h2>
                </div>
-            ))}
-         {totalPages > 1 && currentPage !== totalPages && (
-            <ButtonShowMore
-               onClick={showMore}
-               currentPage={currentPage}
-               totalPages={totalPages}
-               type="button"
-            >
-               Show more
-            </ButtonShowMore>
-         )}
+         ))}
       </div>
    );
 }
