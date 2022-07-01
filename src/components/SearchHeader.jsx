@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { MoviesService } from "../API/api";
 import { useGlobalState } from "../GlobalState";
 import { useFetching } from "../hooks/useFetching";
-import Input from "./UI/Inputs/Input";
 import { Search, XLg } from "react-bootstrap-icons";
 import ListMovies from "./ListMovies";
 
@@ -13,6 +12,7 @@ const SearchHeader = () => {
    const [isActiveListMovie, setIsActiveListMovie] = useState(false);
    const [movies, setMovies] = useState([]);
    const [searchQuery, setSearchQuery] = useState("");
+   const ref = useRef(null);
 
    const [fetchMovies] = useFetching(async () => {
       const response = await MoviesService.searchMovies(language, searchQuery);
@@ -32,6 +32,7 @@ const SearchHeader = () => {
    };
 
    const handleToggle = () => {
+      ref.current.focus();
       setIsActiveInput(!isActiveInput);
       resetInputField();
    };
@@ -56,7 +57,8 @@ const SearchHeader = () => {
                      : "header-search__form"
                }
             >
-               <Input
+               <input
+                  ref={ref}
                   onChange={onChange}
                   value={searchQuery}
                   placeholder="Search..."
